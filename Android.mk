@@ -36,9 +36,9 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 # leave them out of the APK
 
 ifneq (,$(TARGET_BUILD_APPS))
-  LOCAL_JNI_SHARED_LIBRARIES := libjni_snapcammosaiccaf libjni_snapcamtinyplanetcaf libjni_imageutilcaf
+  LOCAL_JNI_SHARED_LIBRARIES := libjni_snapcammosaiccaf libjni_snapcamtinyplanetcaf libjni_imageutil
 else
-  LOCAL_REQUIRED_MODULES := libjni_snapcammosaiccaf libjni_snapcamtinyplanetcaf libjni_imageutilcaf
+  LOCAL_REQUIRED_MODULES := libjni_snapcammosaiccaf libjni_snapcamtinyplanetcaf libjni_imageutil
 endif
 
 include $(BUILD_PACKAGE)

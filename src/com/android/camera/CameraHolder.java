@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2009 The Android Open Source Project
+ *               2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +30,9 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import org.codeaurora.snapcam.R;
 
+import com.android.camera.app.CameraApp;
 import com.android.camera.CameraManager.CameraProxy;
 
 import java.io.IOException;
@@ -230,6 +233,9 @@ public class CameraHolder {
     public synchronized CameraProxy open(
             Handler handler, int cameraId,
             CameraManager.CameraOpenErrorCallback cb) {
+
+        Context context = CameraApp.getContext();
+
         if (DEBUG_OPEN_RELEASE) {
             collectState(cameraId, mCameraDevice);
             if (mCameraOpened) {
@@ -262,6 +268,15 @@ public class CameraHolder {
             }
             mCameraId = cameraId;
             mParameters = mCameraDevice.getCamera().getParameters();
+
+            // LGE Camera
+            final boolean lgeCamera = context.getResources().getBoolean(R.bool.lge_camera);
+            if (lgeCamera && mParameters != null) {
+                Log.d(TAG, "Set parameter lge-camera = 1");
+                mParameters.set("lge-camera", "1");
+                mCameraDevice.setParameters(mParameters);
+            }
+
         } else {
             if (!mCameraDevice.reconnect(handler, cb)) {
                 Log.e(TAG, "fail to reconnect Camera:" + mCameraId + ", aborting.");

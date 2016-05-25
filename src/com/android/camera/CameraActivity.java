@@ -341,6 +341,7 @@ public class CameraActivity extends Activity
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "SDcard status changed, update storage space");
+            SDCard.instance().scanVolumes();
             updateStorageSpaceAndHint();
         }
     };

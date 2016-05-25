@@ -113,12 +113,23 @@ public class SDCard {
         return mVolume.getState();
     }
 
+    public void scanVolumes() {
+        if (mStorageManager != null) {
+            final StorageVolume[] volumes = mStorageManager.getVolumeList();
+            if (volumes.length > VOLUME_SDCARD_INDEX) {
+                mVolume = volumes[VOLUME_SDCARD_INDEX];
+                Log.i(TAG, "found SDCard volume");
+            }
+        } else {
+            Log.e(TAG, "couldn't talk to MountService");
+        }
+    }
+
     private SDCard(Context context) {
         try {
             mContext = context;
             mStorageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
-            initVolume();
-            registerMediaBroadcastreceiver(context);
+            scanVolumes();
         } catch (Exception e) {
             Log.e(TAG, "couldn't talk to MountService", e);
         }

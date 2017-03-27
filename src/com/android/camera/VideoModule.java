@@ -70,6 +70,7 @@ import com.android.camera.util.AccessibilityUtils;
 import com.android.camera.util.ApiHelper;
 import com.android.camera.util.CameraUtil;
 import com.android.camera.util.UsageStatistics;
+import org.omnirom.snap.R;
 import com.android.camera.PhotoModule;
 
 import org.codeaurora.snapcam.R;

@@ -73,7 +73,6 @@ import com.android.camera.util.UsageStatistics;
 import org.omnirom.snap.R;
 import com.android.camera.PhotoModule;
 
-import org.codeaurora.snapcam.R;
 import org.codeaurora.snapcam.wrapper.ParametersWrapper;
 import org.codeaurora.snapcam.wrapper.CamcorderProfileWrapper;
 
